@@ -1,0 +1,19 @@
+[                          main] Home                           INFO  hapi.home is set to C:\Users\Wolfgang\workspace\alarmSender\.
+[                          main] VersionLogger                  INFO  HAPI version is: 2.2
+[                          main] VersionLogger                  INFO  Default Structure libraries found for HL7 versions 2.5, 
+[                          main] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) is starting
+[                          main] ManagedManagementStrategy      INFO  JMX is enabled
+[                          main] DefaultTypeConverter           INFO  Loaded 192 type converters
+[                          main] DefaultRuntimeEndpointRegistry INFO  Runtime endpoint registry is in extended mode gathering usage statistics of all incoming and outgoing endpoints (cache limit: 1000)
+[                          main] DefaultCamelContext            INFO  AllowUseOriginalMessage is enabled. If access to the original message is not needed, then its recommended to turn this option off as it may improve performance.
+[                          main] DefaultCamelContext            INFO  StreamCaching is not in use. If using streams then its recommended to enable stream caching. See more details at http://camel.apache.org/stream-caching.html
+[                          main] DefaultCamelContext            INFO  Route: route1 started and consuming from: Endpoint[file://src/data?fileName=alarmexamples.txt]
+[                          main] Mina2Consumer                  INFO  Unbinding from server address: /127.0.0.1:8000 using acceptor: (nio socket acceptor: not bound)
+[                          main] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) is shutting down
+[                          main] DefaultShutdownStrategy        INFO  Starting to graceful shutdown 1 routes (timeout 300 seconds)
+[el-1) thread #1 - ShutdownTask] DefaultShutdownStrategy        INFO  Route: route1 shutdown complete, was consuming from: Endpoint[file://src/data?fileName=alarmexamples.txt]
+[                          main] DefaultShutdownStrategy        INFO  Graceful shutdown of 1 routes completed in 0 seconds
+[                          main] MainLifecycleStrategy          INFO  CamelContext: camel-1 has been shutdown, triggering shutdown of the JVM.
+[                          main] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) uptime 0.416 seconds
+[                          main] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) is shutdown in 0.010 seconds
+[                      Thread-0] MainSupport$HangupInterceptor  INFO  Received hang up - stopping the main instance.
