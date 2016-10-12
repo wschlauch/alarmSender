@@ -7,13 +7,334 @@
 [                          main] DefaultRuntimeEndpointRegistry INFO  Runtime endpoint registry is in extended mode gathering usage statistics of all incoming and outgoing endpoints (cache limit: 1000)
 [                          main] DefaultCamelContext            INFO  AllowUseOriginalMessage is enabled. If access to the original message is not needed, then its recommended to turn this option off as it may improve performance.
 [                          main] DefaultCamelContext            INFO  StreamCaching is not in use. If using streams then its recommended to enable stream caching. See more details at http://camel.apache.org/stream-caching.html
-[                          main] DefaultCamelContext            INFO  Route: route1 started and consuming from: Endpoint[file://src/data?fileName=alarmexamples.txt]
-[                          main] Mina2Consumer                  INFO  Unbinding from server address: /127.0.0.1:8000 using acceptor: (nio socket acceptor: not bound)
-[                          main] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) is shutting down
-[                          main] DefaultShutdownStrategy        INFO  Starting to graceful shutdown 1 routes (timeout 300 seconds)
-[el-1) thread #1 - ShutdownTask] DefaultShutdownStrategy        INFO  Route: route1 shutdown complete, was consuming from: Endpoint[file://src/data?fileName=alarmexamples.txt]
-[                          main] DefaultShutdownStrategy        INFO  Graceful shutdown of 1 routes completed in 0 seconds
-[                          main] MainLifecycleStrategy          INFO  CamelContext: camel-1 has been shutdown, triggering shutdown of the JVM.
-[                          main] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) uptime 0.416 seconds
-[                          main] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) is shutdown in 0.010 seconds
+[                          main] DefaultCamelContext            INFO  Route: route1 started and consuming from: Endpoint[file://src/data?fileName=alarmexamplesv2.txt]
+[                          main] DefaultCamelContext            INFO  Total 1 routes, of which 1 is started.
+[                          main] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) started in 0.393 seconds
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-54055-1476289573807-0-5 on ExchangeId: ID-Venus-54055-1476289573807-0-6). Exhausted after delivery attempt: 1 caught: org.apache.camel.TypeConversionException: Error during type conversion from type: java.lang.String to the required type: ca.uhn.hl7v2.model.Message with value  due ca.uhn.hl7v2.parser.EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: 
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamplesv2.txt                                  ] [       915]
+[route1            ] [delay1            ] [delay[{400}]                                                                  ] [       408]
+[route1            ] [marshal1          ] [marshal[org.apache.camel.model.DataFormatDefinition@517b361e]                 ] [         6]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-54055-1476289573807-0-6
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-54055-1476289573807-0-1, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamplesv2.txt, CamelFileContentType=text/plain, CamelFileLastModified=1476289353014, CamelFileLength=2004, CamelFileName=alarmexamplesv2.txt, CamelFileNameConsumed=alarmexamplesv2.txt, CamelFileNameOnly=alarmexamplesv2.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamplesv2.txt, CamelFileRelativePath=alarmexamplesv2.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            String
+	Body                
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.TypeConversionException: Error during type conversion from type: java.lang.String to the required type: ca.uhn.hl7v2.model.Message with value  due ca.uhn.hl7v2.parser.EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: 
+	at org.apache.camel.impl.converter.BaseTypeConverterRegistry.createTypeConversionException(BaseTypeConverterRegistry.java:610)
+	at org.apache.camel.impl.converter.BaseTypeConverterRegistry.mandatoryConvertTo(BaseTypeConverterRegistry.java:177)
+	at org.apache.camel.util.ExchangeHelper.convertToMandatoryType(ExchangeHelper.java:187)
+	at org.apache.camel.component.hl7.HL7DataFormat.marshal(HL7DataFormat.java:103)
+	at org.apache.camel.processor.MarshalProcessor.process(MarshalProcessor.java:83)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.DelayProcessorSupport.processDelay(DelayProcessorSupport.java:100)
+	at org.apache.camel.processor.DelayProcessorSupport.process(DelayProcessorSupport.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.apache.camel.RuntimeCamelException: ca.uhn.hl7v2.parser.EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: 
+	at org.apache.camel.util.ObjectHelper.wrapRuntimeCamelException(ObjectHelper.java:1652)
+	at org.apache.camel.util.ObjectHelper.invokeMethod(ObjectHelper.java:1247)
+	at org.apache.camel.impl.converter.StaticMethodTypeConverter.convertTo(StaticMethodTypeConverter.java:59)
+	at org.apache.camel.impl.converter.BaseTypeConverterRegistry.doConvertTo(BaseTypeConverterRegistry.java:293)
+	at org.apache.camel.impl.converter.BaseTypeConverterRegistry.mandatoryConvertTo(BaseTypeConverterRegistry.java:168)
+	... 37 more
+Caused by: ca.uhn.hl7v2.parser.EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: 
+	at ca.uhn.hl7v2.parser.Parser.parse(Parser.java:201)
+	at ca.uhn.hl7v2.parser.GenericParser.parse(GenericParser.java:253)
+	at org.apache.camel.component.hl7.HL7Converter.parse(HL7Converter.java:60)
+	at org.apache.camel.component.hl7.HL7Converter.toMessage(HL7Converter.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.camel.util.ObjectHelper.invokeMethod(ObjectHelper.java:1243)
+	... 40 more
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-54055-1476289573807-0-9 on ExchangeId: ID-Venus-54055-1476289573807-0-10). Exhausted after delivery attempt: 1 caught: org.apache.camel.TypeConversionException: Error during type conversion from type: java.lang.String to the required type: ca.uhn.hl7v2.model.Message with value  due ca.uhn.hl7v2.parser.EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: 
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamplesv2.txt                                  ] [      1798]
+[route1            ] [delay1            ] [delay[{400}]                                                                  ] [       401]
+[route1            ] [marshal1          ] [marshal[org.apache.camel.model.DataFormatDefinition@517b361e]                 ] [         0]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-54055-1476289573807-0-10
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-54055-1476289573807-0-1, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamplesv2.txt, CamelFileContentType=text/plain, CamelFileLastModified=1476289353014, CamelFileLength=2004, CamelFileName=alarmexamplesv2.txt, CamelFileNameConsumed=alarmexamplesv2.txt, CamelFileNameOnly=alarmexamplesv2.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamplesv2.txt, CamelFileRelativePath=alarmexamplesv2.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            String
+	Body                
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.TypeConversionException: Error during type conversion from type: java.lang.String to the required type: ca.uhn.hl7v2.model.Message with value  due ca.uhn.hl7v2.parser.EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: 
+	at org.apache.camel.impl.converter.BaseTypeConverterRegistry.createTypeConversionException(BaseTypeConverterRegistry.java:610)
+	at org.apache.camel.impl.converter.BaseTypeConverterRegistry.mandatoryConvertTo(BaseTypeConverterRegistry.java:177)
+	at org.apache.camel.util.ExchangeHelper.convertToMandatoryType(ExchangeHelper.java:187)
+	at org.apache.camel.component.hl7.HL7DataFormat.marshal(HL7DataFormat.java:103)
+	at org.apache.camel.processor.MarshalProcessor.process(MarshalProcessor.java:83)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.DelayProcessorSupport.processDelay(DelayProcessorSupport.java:100)
+	at org.apache.camel.processor.DelayProcessorSupport.process(DelayProcessorSupport.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.apache.camel.RuntimeCamelException: ca.uhn.hl7v2.parser.EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: 
+	at org.apache.camel.util.ObjectHelper.wrapRuntimeCamelException(ObjectHelper.java:1652)
+	at org.apache.camel.util.ObjectHelper.invokeMethod(ObjectHelper.java:1247)
+	at org.apache.camel.impl.converter.StaticMethodTypeConverter.convertTo(StaticMethodTypeConverter.java:59)
+	at org.apache.camel.impl.converter.BaseTypeConverterRegistry.doConvertTo(BaseTypeConverterRegistry.java:293)
+	at org.apache.camel.impl.converter.BaseTypeConverterRegistry.mandatoryConvertTo(BaseTypeConverterRegistry.java:168)
+	... 37 more
+Caused by: ca.uhn.hl7v2.parser.EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: 
+	at ca.uhn.hl7v2.parser.Parser.parse(Parser.java:201)
+	at ca.uhn.hl7v2.parser.GenericParser.parse(GenericParser.java:253)
+	at org.apache.camel.component.hl7.HL7Converter.parse(HL7Converter.java:60)
+	at org.apache.camel.component.hl7.HL7Converter.toMessage(HL7Converter.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.camel.util.ObjectHelper.invokeMethod(ObjectHelper.java:1243)
+	... 40 more
+[1) thread #0 - file://src/data] GenericFileOnCompletion        WARN  Rollback file strategy: org.apache.camel.component.file.strategy.GenericFileRenameProcessStrategy@588d9d55 for file: GenericFile[alarmexamplesv2.txt]
 [                      Thread-0] MainSupport$HangupInterceptor  INFO  Received hang up - stopping the main instance.
+[                      Thread-0] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) is shutting down
+[                      Thread-0] DefaultShutdownStrategy        INFO  Starting to graceful shutdown 1 routes (timeout 300 seconds)
+[el-1) thread #1 - ShutdownTask] DefaultShutdownStrategy        INFO  Waiting as there are still 2 inflight and pending exchanges to complete, timeout in 300 seconds. Inflights per route: [route1 = 2]
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-54055-1476289573807-0-17 on ExchangeId: ID-Venus-54055-1476289573807-0-18). Exhausted after delivery attempt: 1 caught: org.apache.camel.TypeConversionException: Error during type conversion from type: java.lang.String to the required type: ca.uhn.hl7v2.model.Message with value  due ca.uhn.hl7v2.parser.EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: 
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamplesv2.txt                                  ] [       815]
+[route1            ] [delay1            ] [delay[{400}]                                                                  ] [       401]
+[route1            ] [marshal1          ] [marshal[org.apache.camel.model.DataFormatDefinition@517b361e]                 ] [         0]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-54055-1476289573807-0-18
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-54055-1476289573807-0-13, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamplesv2.txt, CamelFileContentType=text/plain, CamelFileLastModified=1476289353014, CamelFileLength=2004, CamelFileName=alarmexamplesv2.txt, CamelFileNameConsumed=alarmexamplesv2.txt, CamelFileNameOnly=alarmexamplesv2.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamplesv2.txt, CamelFileRelativePath=alarmexamplesv2.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            String
+	Body                
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.TypeConversionException: Error during type conversion from type: java.lang.String to the required type: ca.uhn.hl7v2.model.Message with value  due ca.uhn.hl7v2.parser.EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: 
+	at org.apache.camel.impl.converter.BaseTypeConverterRegistry.createTypeConversionException(BaseTypeConverterRegistry.java:610)
+	at org.apache.camel.impl.converter.BaseTypeConverterRegistry.mandatoryConvertTo(BaseTypeConverterRegistry.java:177)
+	at org.apache.camel.util.ExchangeHelper.convertToMandatoryType(ExchangeHelper.java:187)
+	at org.apache.camel.component.hl7.HL7DataFormat.marshal(HL7DataFormat.java:103)
+	at org.apache.camel.processor.MarshalProcessor.process(MarshalProcessor.java:83)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.DelayProcessorSupport.processDelay(DelayProcessorSupport.java:100)
+	at org.apache.camel.processor.DelayProcessorSupport.process(DelayProcessorSupport.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.apache.camel.RuntimeCamelException: ca.uhn.hl7v2.parser.EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: 
+	at org.apache.camel.util.ObjectHelper.wrapRuntimeCamelException(ObjectHelper.java:1652)
+	at org.apache.camel.util.ObjectHelper.invokeMethod(ObjectHelper.java:1247)
+	at org.apache.camel.impl.converter.StaticMethodTypeConverter.convertTo(StaticMethodTypeConverter.java:59)
+	at org.apache.camel.impl.converter.BaseTypeConverterRegistry.doConvertTo(BaseTypeConverterRegistry.java:293)
+	at org.apache.camel.impl.converter.BaseTypeConverterRegistry.mandatoryConvertTo(BaseTypeConverterRegistry.java:168)
+	... 37 more
+Caused by: ca.uhn.hl7v2.parser.EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: 
+	at ca.uhn.hl7v2.parser.Parser.parse(Parser.java:201)
+	at ca.uhn.hl7v2.parser.GenericParser.parse(GenericParser.java:253)
+	at org.apache.camel.component.hl7.HL7Converter.parse(HL7Converter.java:60)
+	at org.apache.camel.component.hl7.HL7Converter.toMessage(HL7Converter.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.camel.util.ObjectHelper.invokeMethod(ObjectHelper.java:1243)
+	... 40 more
+[el-1) thread #1 - ShutdownTask] DefaultShutdownStrategy        INFO  Waiting as there are still 2 inflight and pending exchanges to complete, timeout in 299 seconds. Inflights per route: [route1 = 2]
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-54055-1476289573807-0-21 on ExchangeId: ID-Venus-54055-1476289573807-0-22). Exhausted after delivery attempt: 1 caught: org.apache.camel.TypeConversionException: Error during type conversion from type: java.lang.String to the required type: ca.uhn.hl7v2.model.Message with value  due ca.uhn.hl7v2.parser.EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: 
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamplesv2.txt                                  ] [      1633]
+[route1            ] [delay1            ] [delay[{400}]                                                                  ] [       401]
+[route1            ] [marshal1          ] [marshal[org.apache.camel.model.DataFormatDefinition@517b361e]                 ] [         0]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-54055-1476289573807-0-22
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-54055-1476289573807-0-13, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamplesv2.txt, CamelFileContentType=text/plain, CamelFileLastModified=1476289353014, CamelFileLength=2004, CamelFileName=alarmexamplesv2.txt, CamelFileNameConsumed=alarmexamplesv2.txt, CamelFileNameOnly=alarmexamplesv2.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamplesv2.txt, CamelFileRelativePath=alarmexamplesv2.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            String
+	Body                
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.TypeConversionException: Error during type conversion from type: java.lang.String to the required type: ca.uhn.hl7v2.model.Message with value  due ca.uhn.hl7v2.parser.EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: 
+	at org.apache.camel.impl.converter.BaseTypeConverterRegistry.createTypeConversionException(BaseTypeConverterRegistry.java:610)
+	at org.apache.camel.impl.converter.BaseTypeConverterRegistry.mandatoryConvertTo(BaseTypeConverterRegistry.java:177)
+	at org.apache.camel.util.ExchangeHelper.convertToMandatoryType(ExchangeHelper.java:187)
+	at org.apache.camel.component.hl7.HL7DataFormat.marshal(HL7DataFormat.java:103)
+	at org.apache.camel.processor.MarshalProcessor.process(MarshalProcessor.java:83)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.DelayProcessorSupport.processDelay(DelayProcessorSupport.java:100)
+	at org.apache.camel.processor.DelayProcessorSupport.process(DelayProcessorSupport.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.apache.camel.RuntimeCamelException: ca.uhn.hl7v2.parser.EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: 
+	at org.apache.camel.util.ObjectHelper.wrapRuntimeCamelException(ObjectHelper.java:1652)
+	at org.apache.camel.util.ObjectHelper.invokeMethod(ObjectHelper.java:1247)
+	at org.apache.camel.impl.converter.StaticMethodTypeConverter.convertTo(StaticMethodTypeConverter.java:59)
+	at org.apache.camel.impl.converter.BaseTypeConverterRegistry.doConvertTo(BaseTypeConverterRegistry.java:293)
+	at org.apache.camel.impl.converter.BaseTypeConverterRegistry.mandatoryConvertTo(BaseTypeConverterRegistry.java:168)
+	... 37 more
+Caused by: ca.uhn.hl7v2.parser.EncodingNotSupportedException: Determine encoding for message. The following is the first 50 chars of the message for reference, although this may not be where the issue is: 
+	at ca.uhn.hl7v2.parser.Parser.parse(Parser.java:201)
+	at ca.uhn.hl7v2.parser.GenericParser.parse(GenericParser.java:253)
+	at org.apache.camel.component.hl7.HL7Converter.parse(HL7Converter.java:60)
+	at org.apache.camel.component.hl7.HL7Converter.toMessage(HL7Converter.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.camel.util.ObjectHelper.invokeMethod(ObjectHelper.java:1243)
+	... 40 more
+[1) thread #0 - file://src/data] GenericFileOnCompletion        WARN  Rollback file strategy: org.apache.camel.component.file.strategy.GenericFileRenameProcessStrategy@588d9d55 for file: GenericFile[alarmexamplesv2.txt]
+[el-1) thread #1 - ShutdownTask] DefaultShutdownStrategy        INFO  Route: route1 shutdown complete, was consuming from: Endpoint[file://src/data?fileName=alarmexamplesv2.txt]
+[                      Thread-0] DefaultShutdownStrategy        INFO  Graceful shutdown of 1 routes completed in 2 seconds
+[                      Thread-0] MainLifecycleStrategy          INFO  CamelContext: camel-1 has been shutdown, triggering shutdown of the JVM.
+[                      Thread-0] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) uptime 6.580 seconds
+[                      Thread-0] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) is shutdown in 2.015 seconds
