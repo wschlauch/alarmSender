@@ -18,7 +18,7 @@ public class SenderRouteBuilder extends RouteBuilder {
 		.split().tokenize("\r\n").streaming().delay(400)
 		.marshal(hl7)
 		.to("mina2://tcp://127.0.0.1:" + System.getProperty("port")	+ "?sync=false&codec=#hl7codec")
-		//.unmarshal(hl7)
+		
 		.end();
 	}
 	
