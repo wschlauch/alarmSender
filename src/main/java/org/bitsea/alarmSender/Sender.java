@@ -20,7 +20,6 @@ public class Sender {
 		main = new Main();
 		
 		main.bind("hl7codec", new HL7MLLPCodec());
-	//	main.bind("messageSplitter", new messageSplitter());
 		main.enableHangupSupport();
 		main.addRouteBuilder(new SenderRouteBuilder());
 		main.run();
