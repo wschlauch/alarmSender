@@ -1,20 +1,1113 @@
 [                          main] Home                           INFO  hapi.home is set to C:\Users\Wolfgang\workspace\alarmSender\.
 [                          main] VersionLogger                  INFO  HAPI version is: 2.2
-[                          main] VersionLogger                  INFO  Default Structure libraries found for HL7 versions 2.5, 
+[                          main] VersionLogger                  INFO  Default Structure libraries found for HL7 versions 2.3, 2.5, 
 [                          main] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) is starting
 [                          main] ManagedManagementStrategy      INFO  JMX is enabled
 [                          main] DefaultTypeConverter           INFO  Loaded 192 type converters
 [                          main] DefaultRuntimeEndpointRegistry INFO  Runtime endpoint registry is in extended mode gathering usage statistics of all incoming and outgoing endpoints (cache limit: 1000)
 [                          main] DefaultCamelContext            INFO  AllowUseOriginalMessage is enabled. If access to the original message is not needed, then its recommended to turn this option off as it may improve performance.
 [                          main] DefaultCamelContext            INFO  StreamCaching is not in use. If using streams then its recommended to enable stream caching. See more details at http://camel.apache.org/stream-caching.html
-[                          main] DefaultCamelContext            INFO  Route: route1 started and consuming from: Endpoint[file://src/data?fileName=alarmexamplesv2.txt]
+[                          main] DefaultCamelContext            INFO  Route: route1 started and consuming from: Endpoint[file://src/data?fileName=alarmexamples.txt]
 [                          main] DefaultCamelContext            INFO  Total 1 routes, of which 1 is started.
-[                          main] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) started in 0.376 seconds
+[                          main] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) started in 0.414 seconds
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-60235-1477315906055-0-3 on ExchangeId: ID-Venus-60235-1477315906055-0-4). Exhausted after delivery attempt: 1 caught: org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-4][Message: MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3EVN|A01|20050110045502PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NONK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||YPV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PTDG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||AIN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||... [Body clipped after 1000 chars, total length is 1421]]
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamples.txt                                    ] [       115]
+[route1            ] [choice2           ] [when[{(header{header(CamelHL7MessageType)} == ORU) and (header{CamelHL7Trigger] [       107]
+[route1            ] [marshal2          ] [marshal[org.apache.camel.model.DataFormatDefinition@12a61cab]                 ] [        52]
+[route1            ] [to2               ] [mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec                       ] [        50]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-60235-1477315906055-0-4
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-60235-1477315906055-0-1, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamples.txt, CamelFileContentType=text/plain, CamelFileLastModified=1477315551105, CamelFileLength=3745, CamelFileName=alarmexamples.txt, CamelFileNameConsumed=alarmexamples.txt, CamelFileNameOnly=alarmexamples.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamples.txt, CamelFileRelativePath=alarmexamples.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            byte[]
+	Body                MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3EVN|A01|20050110045502PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NONK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||YPV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PTDG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||AIN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212IN1|2|NON-PRIMARY|9|MEDICAL MUTUAL CALIF.|PO BOX 94776^^HOLLYWOOD^CA^441414776||8003621279|PUBSUMB|||Cartoon Ducks Inc||||7|DUCK^DONALD^D|1|19241010|111 DUCK ST^^FOWL^CA^999990000|||||||||||||||||056269770||||||PT|M|111^DUCK ST^^FOWL^CA^999990000|||||8291IN2|2||123121234|Cartoon Ducks Inc||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212IN1|3|SELFPAY|1|SELFPAY|||||||||||5||1
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-4][Message: MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3
+EVN|A01|20050110045502
+PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO
+NK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||Y
+PV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253
+GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PT
+DG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||A
+IN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291
+IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||... [Body clipped after 1000 chars, total length is 1421]]
+	at org.apache.camel.component.mina2.Mina2Producer.doProcess(Mina2Producer.java:179)
+	at org.apache.camel.component.mina2.Mina2Producer.process(Mina2Producer.java:112)
+	at org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)
+	at org.apache.camel.processor.SendProcessor$2.doInAsyncProducer(SendProcessor.java:173)
+	at org.apache.camel.impl.ProducerCache.doInAsyncProducer(ProducerCache.java:341)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-60235-1477315906055-0-5 on ExchangeId: ID-Venus-60235-1477315906055-0-6). Exhausted after delivery attempt: 1 caught: org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-6][Message: MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3EVN|A03|20050112154642PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NOPV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P]
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamples.txt                                    ] [       155]
+[route1            ] [choice2           ] [when[{(header{header(CamelHL7MessageType)} == ORU) and (header{CamelHL7Trigger] [        35]
+[route1            ] [marshal2          ] [marshal[org.apache.camel.model.DataFormatDefinition@12a61cab]                 ] [         3]
+[route1            ] [to2               ] [mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec                       ] [        32]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-60235-1477315906055-0-6
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-60235-1477315906055-0-1, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamples.txt, CamelFileContentType=text/plain, CamelFileLastModified=1477315551105, CamelFileLength=3745, CamelFileName=alarmexamples.txt, CamelFileNameConsumed=alarmexamples.txt, CamelFileNameOnly=alarmexamples.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamples.txt, CamelFileRelativePath=alarmexamples.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            byte[]
+	Body                MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3EVN|A03|20050112154642PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NOPV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-6][Message: MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3
+EVN|A03|20050112154642
+PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO
+PV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P
+]
+	at org.apache.camel.component.mina2.Mina2Producer.doProcess(Mina2Producer.java:179)
+	at org.apache.camel.component.mina2.Mina2Producer.process(Mina2Producer.java:112)
+	at org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)
+	at org.apache.camel.processor.SendProcessor$2.doInAsyncProducer(SendProcessor.java:173)
+	at org.apache.camel.impl.ProducerCache.doInAsyncProducer(ProducerCache.java:341)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-60235-1477315906055-0-7 on ExchangeId: ID-Venus-60235-1477315906055-0-8). Exhausted after delivery attempt: 1 caught: org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-8][Message: MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3EVN|A01|20050110045502PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NONK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||YPV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PTDG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||AIN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||... [Body clipped after 1000 chars, total length is 1421]]
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamples.txt                                    ] [       195]
+[route1            ] [choice2           ] [when[{(header{header(CamelHL7MessageType)} == ORU) and (header{CamelHL7Trigger] [        37]
+[route1            ] [marshal2          ] [marshal[org.apache.camel.model.DataFormatDefinition@12a61cab]                 ] [         7]
+[route1            ] [to2               ] [mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec                       ] [        29]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-60235-1477315906055-0-8
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-60235-1477315906055-0-1, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamples.txt, CamelFileContentType=text/plain, CamelFileLastModified=1477315551105, CamelFileLength=3745, CamelFileName=alarmexamples.txt, CamelFileNameConsumed=alarmexamples.txt, CamelFileNameOnly=alarmexamples.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamples.txt, CamelFileRelativePath=alarmexamples.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            byte[]
+	Body                MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3EVN|A01|20050110045502PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NONK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||YPV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PTDG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||AIN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212IN1|2|NON-PRIMARY|9|MEDICAL MUTUAL CALIF.|PO BOX 94776^^HOLLYWOOD^CA^441414776||8003621279|PUBSUMB|||Cartoon Ducks Inc||||7|DUCK^DONALD^D|1|19241010|111 DUCK ST^^FOWL^CA^999990000|||||||||||||||||056269770||||||PT|M|111^DUCK ST^^FOWL^CA^999990000|||||8291IN2|2||123121234|Cartoon Ducks Inc||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212IN1|3|SELFPAY|1|SELFPAY|||||||||||5||1
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-8][Message: MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3
+EVN|A01|20050110045502
+PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO
+NK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||Y
+PV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253
+GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PT
+DG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||A
+IN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291
+IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||... [Body clipped after 1000 chars, total length is 1421]]
+	at org.apache.camel.component.mina2.Mina2Producer.doProcess(Mina2Producer.java:179)
+	at org.apache.camel.component.mina2.Mina2Producer.process(Mina2Producer.java:112)
+	at org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)
+	at org.apache.camel.processor.SendProcessor$2.doInAsyncProducer(SendProcessor.java:173)
+	at org.apache.camel.impl.ProducerCache.doInAsyncProducer(ProducerCache.java:341)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-60235-1477315906055-0-9 on ExchangeId: ID-Venus-60235-1477315906055-0-10). Exhausted after delivery attempt: 1 caught: org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-10][Message: MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3EVN|A03|20050112154642PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NOPV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P]
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamples.txt                                    ] [       231]
+[route1            ] [choice2           ] [when[{(header{header(CamelHL7MessageType)} == ORU) and (header{CamelHL7Trigger] [        35]
+[route1            ] [marshal2          ] [marshal[org.apache.camel.model.DataFormatDefinition@12a61cab]                 ] [         2]
+[route1            ] [to2               ] [mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec                       ] [        33]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-60235-1477315906055-0-10
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-60235-1477315906055-0-1, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamples.txt, CamelFileContentType=text/plain, CamelFileLastModified=1477315551105, CamelFileLength=3745, CamelFileName=alarmexamples.txt, CamelFileNameConsumed=alarmexamples.txt, CamelFileNameOnly=alarmexamples.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamples.txt, CamelFileRelativePath=alarmexamples.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            byte[]
+	Body                MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3EVN|A03|20050112154642PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NOPV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-10][Message: MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3
+EVN|A03|20050112154642
+PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO
+PV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P
+]
+	at org.apache.camel.component.mina2.Mina2Producer.doProcess(Mina2Producer.java:179)
+	at org.apache.camel.component.mina2.Mina2Producer.process(Mina2Producer.java:112)
+	at org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)
+	at org.apache.camel.processor.SendProcessor$2.doInAsyncProducer(SendProcessor.java:173)
+	at org.apache.camel.impl.ProducerCache.doInAsyncProducer(ProducerCache.java:341)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+[1) thread #0 - file://src/data] GenericFileOnCompletion        WARN  Rollback file strategy: org.apache.camel.component.file.strategy.GenericFileRenameProcessStrategy@6e546518 for file: GenericFile[alarmexamples.txt]
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-60235-1477315906055-0-13 on ExchangeId: ID-Venus-60235-1477315906055-0-14). Exhausted after delivery attempt: 1 caught: org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-14][Message: MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3EVN|A01|20050110045502PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NONK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||YPV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PTDG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||AIN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||... [Body clipped after 1000 chars, total length is 1421]]
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamples.txt                                    ] [       128]
+[route1            ] [choice2           ] [when[{(header{header(CamelHL7MessageType)} == ORU) and (header{CamelHL7Trigger] [       125]
+[route1            ] [marshal2          ] [marshal[org.apache.camel.model.DataFormatDefinition@12a61cab]                 ] [        16]
+[route1            ] [to2               ] [mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec                       ] [       108]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-60235-1477315906055-0-14
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-60235-1477315906055-0-11, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamples.txt, CamelFileContentType=text/plain, CamelFileLastModified=1477315551105, CamelFileLength=3745, CamelFileName=alarmexamples.txt, CamelFileNameConsumed=alarmexamples.txt, CamelFileNameOnly=alarmexamples.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamples.txt, CamelFileRelativePath=alarmexamples.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            byte[]
+	Body                MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3EVN|A01|20050110045502PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NONK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||YPV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PTDG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||AIN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212IN1|2|NON-PRIMARY|9|MEDICAL MUTUAL CALIF.|PO BOX 94776^^HOLLYWOOD^CA^441414776||8003621279|PUBSUMB|||Cartoon Ducks Inc||||7|DUCK^DONALD^D|1|19241010|111 DUCK ST^^FOWL^CA^999990000|||||||||||||||||056269770||||||PT|M|111^DUCK ST^^FOWL^CA^999990000|||||8291IN2|2||123121234|Cartoon Ducks Inc||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212IN1|3|SELFPAY|1|SELFPAY|||||||||||5||1
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-14][Message: MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3
+EVN|A01|20050110045502
+PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO
+NK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||Y
+PV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253
+GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PT
+DG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||A
+IN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291
+IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||... [Body clipped after 1000 chars, total length is 1421]]
+	at org.apache.camel.component.mina2.Mina2Producer.doProcess(Mina2Producer.java:179)
+	at org.apache.camel.component.mina2.Mina2Producer.process(Mina2Producer.java:112)
+	at org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)
+	at org.apache.camel.processor.SendProcessor$2.doInAsyncProducer(SendProcessor.java:173)
+	at org.apache.camel.impl.ProducerCache.doInAsyncProducer(ProducerCache.java:341)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-60235-1477315906055-0-15 on ExchangeId: ID-Venus-60235-1477315906055-0-16). Exhausted after delivery attempt: 1 caught: org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-16][Message: MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3EVN|A03|20050112154642PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NOPV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P]
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamples.txt                                    ] [       184]
+[route1            ] [choice2           ] [when[{(header{header(CamelHL7MessageType)} == ORU) and (header{CamelHL7Trigger] [        53]
+[route1            ] [marshal2          ] [marshal[org.apache.camel.model.DataFormatDefinition@12a61cab]                 ] [         5]
+[route1            ] [to2               ] [mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec                       ] [        47]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-60235-1477315906055-0-16
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-60235-1477315906055-0-11, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamples.txt, CamelFileContentType=text/plain, CamelFileLastModified=1477315551105, CamelFileLength=3745, CamelFileName=alarmexamples.txt, CamelFileNameConsumed=alarmexamples.txt, CamelFileNameOnly=alarmexamples.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamples.txt, CamelFileRelativePath=alarmexamples.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            byte[]
+	Body                MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3EVN|A03|20050112154642PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NOPV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-16][Message: MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3
+EVN|A03|20050112154642
+PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO
+PV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P
+]
+	at org.apache.camel.component.mina2.Mina2Producer.doProcess(Mina2Producer.java:179)
+	at org.apache.camel.component.mina2.Mina2Producer.process(Mina2Producer.java:112)
+	at org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)
+	at org.apache.camel.processor.SendProcessor$2.doInAsyncProducer(SendProcessor.java:173)
+	at org.apache.camel.impl.ProducerCache.doInAsyncProducer(ProducerCache.java:341)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-60235-1477315906055-0-17 on ExchangeId: ID-Venus-60235-1477315906055-0-18). Exhausted after delivery attempt: 1 caught: org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-18][Message: MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3EVN|A01|20050110045502PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NONK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||YPV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PTDG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||AIN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||... [Body clipped after 1000 chars, total length is 1421]]
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamples.txt                                    ] [       242]
+[route1            ] [choice2           ] [when[{(header{header(CamelHL7MessageType)} == ORU) and (header{CamelHL7Trigger] [        54]
+[route1            ] [marshal2          ] [marshal[org.apache.camel.model.DataFormatDefinition@12a61cab]                 ] [         9]
+[route1            ] [to2               ] [mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec                       ] [        44]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-60235-1477315906055-0-18
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-60235-1477315906055-0-11, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamples.txt, CamelFileContentType=text/plain, CamelFileLastModified=1477315551105, CamelFileLength=3745, CamelFileName=alarmexamples.txt, CamelFileNameConsumed=alarmexamples.txt, CamelFileNameOnly=alarmexamples.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamples.txt, CamelFileRelativePath=alarmexamples.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            byte[]
+	Body                MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3EVN|A01|20050110045502PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NONK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||YPV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PTDG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||AIN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212IN1|2|NON-PRIMARY|9|MEDICAL MUTUAL CALIF.|PO BOX 94776^^HOLLYWOOD^CA^441414776||8003621279|PUBSUMB|||Cartoon Ducks Inc||||7|DUCK^DONALD^D|1|19241010|111 DUCK ST^^FOWL^CA^999990000|||||||||||||||||056269770||||||PT|M|111^DUCK ST^^FOWL^CA^999990000|||||8291IN2|2||123121234|Cartoon Ducks Inc||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212IN1|3|SELFPAY|1|SELFPAY|||||||||||5||1
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-18][Message: MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3
+EVN|A01|20050110045502
+PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO
+NK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||Y
+PV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253
+GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PT
+DG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||A
+IN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291
+IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||... [Body clipped after 1000 chars, total length is 1421]]
+	at org.apache.camel.component.mina2.Mina2Producer.doProcess(Mina2Producer.java:179)
+	at org.apache.camel.component.mina2.Mina2Producer.process(Mina2Producer.java:112)
+	at org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)
+	at org.apache.camel.processor.SendProcessor$2.doInAsyncProducer(SendProcessor.java:173)
+	at org.apache.camel.impl.ProducerCache.doInAsyncProducer(ProducerCache.java:341)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-60235-1477315906055-0-19 on ExchangeId: ID-Venus-60235-1477315906055-0-20). Exhausted after delivery attempt: 1 caught: org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-20][Message: MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3EVN|A03|20050112154642PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NOPV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P]
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamples.txt                                    ] [       393]
+[route1            ] [choice2           ] [when[{(header{header(CamelHL7MessageType)} == ORU) and (header{CamelHL7Trigger] [       150]
+[route1            ] [marshal2          ] [marshal[org.apache.camel.model.DataFormatDefinition@12a61cab]                 ] [         1]
+[route1            ] [to2               ] [mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec                       ] [       148]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-60235-1477315906055-0-20
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-60235-1477315906055-0-11, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamples.txt, CamelFileContentType=text/plain, CamelFileLastModified=1477315551105, CamelFileLength=3745, CamelFileName=alarmexamples.txt, CamelFileNameConsumed=alarmexamples.txt, CamelFileNameOnly=alarmexamples.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamples.txt, CamelFileRelativePath=alarmexamples.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            byte[]
+	Body                MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3EVN|A03|20050112154642PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NOPV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-20][Message: MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3
+EVN|A03|20050112154642
+PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO
+PV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P
+]
+	at org.apache.camel.component.mina2.Mina2Producer.doProcess(Mina2Producer.java:179)
+	at org.apache.camel.component.mina2.Mina2Producer.process(Mina2Producer.java:112)
+	at org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)
+	at org.apache.camel.processor.SendProcessor$2.doInAsyncProducer(SendProcessor.java:173)
+	at org.apache.camel.impl.ProducerCache.doInAsyncProducer(ProducerCache.java:341)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+[1) thread #0 - file://src/data] GenericFileOnCompletion        WARN  Rollback file strategy: org.apache.camel.component.file.strategy.GenericFileRenameProcessStrategy@6e546518 for file: GenericFile[alarmexamples.txt]
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-60235-1477315906055-0-23 on ExchangeId: ID-Venus-60235-1477315906055-0-24). Exhausted after delivery attempt: 1 caught: org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-24][Message: MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3EVN|A01|20050110045502PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NONK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||YPV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PTDG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||AIN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||... [Body clipped after 1000 chars, total length is 1421]]
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamples.txt                                    ] [        78]
+[route1            ] [choice2           ] [when[{(header{header(CamelHL7MessageType)} == ORU) and (header{CamelHL7Trigger] [        76]
+[route1            ] [marshal2          ] [marshal[org.apache.camel.model.DataFormatDefinition@12a61cab]                 ] [        16]
+[route1            ] [to2               ] [mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec                       ] [        60]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-60235-1477315906055-0-24
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-60235-1477315906055-0-21, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamples.txt, CamelFileContentType=text/plain, CamelFileLastModified=1477315551105, CamelFileLength=3745, CamelFileName=alarmexamples.txt, CamelFileNameConsumed=alarmexamples.txt, CamelFileNameOnly=alarmexamples.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamples.txt, CamelFileRelativePath=alarmexamples.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            byte[]
+	Body                MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3EVN|A01|20050110045502PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NONK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||YPV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PTDG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||AIN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212IN1|2|NON-PRIMARY|9|MEDICAL MUTUAL CALIF.|PO BOX 94776^^HOLLYWOOD^CA^441414776||8003621279|PUBSUMB|||Cartoon Ducks Inc||||7|DUCK^DONALD^D|1|19241010|111 DUCK ST^^FOWL^CA^999990000|||||||||||||||||056269770||||||PT|M|111^DUCK ST^^FOWL^CA^999990000|||||8291IN2|2||123121234|Cartoon Ducks Inc||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212IN1|3|SELFPAY|1|SELFPAY|||||||||||5||1
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-24][Message: MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3
+EVN|A01|20050110045502
+PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO
+NK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||Y
+PV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253
+GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PT
+DG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||A
+IN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291
+IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||... [Body clipped after 1000 chars, total length is 1421]]
+	at org.apache.camel.component.mina2.Mina2Producer.doProcess(Mina2Producer.java:179)
+	at org.apache.camel.component.mina2.Mina2Producer.process(Mina2Producer.java:112)
+	at org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)
+	at org.apache.camel.processor.SendProcessor$2.doInAsyncProducer(SendProcessor.java:173)
+	at org.apache.camel.impl.ProducerCache.doInAsyncProducer(ProducerCache.java:341)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-60235-1477315906055-0-25 on ExchangeId: ID-Venus-60235-1477315906055-0-26). Exhausted after delivery attempt: 1 caught: org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-26][Message: MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3EVN|A03|20050112154642PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NOPV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P]
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamples.txt                                    ] [       122]
+[route1            ] [choice2           ] [when[{(header{header(CamelHL7MessageType)} == ORU) and (header{CamelHL7Trigger] [        40]
+[route1            ] [marshal2          ] [marshal[org.apache.camel.model.DataFormatDefinition@12a61cab]                 ] [         2]
+[route1            ] [to2               ] [mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec                       ] [        36]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-60235-1477315906055-0-26
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-60235-1477315906055-0-21, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamples.txt, CamelFileContentType=text/plain, CamelFileLastModified=1477315551105, CamelFileLength=3745, CamelFileName=alarmexamples.txt, CamelFileNameConsumed=alarmexamples.txt, CamelFileNameOnly=alarmexamples.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamples.txt, CamelFileRelativePath=alarmexamples.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            byte[]
+	Body                MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3EVN|A03|20050112154642PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NOPV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-26][Message: MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3
+EVN|A03|20050112154642
+PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO
+PV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P
+]
+	at org.apache.camel.component.mina2.Mina2Producer.doProcess(Mina2Producer.java:179)
+	at org.apache.camel.component.mina2.Mina2Producer.process(Mina2Producer.java:112)
+	at org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)
+	at org.apache.camel.processor.SendProcessor$2.doInAsyncProducer(SendProcessor.java:173)
+	at org.apache.camel.impl.ProducerCache.doInAsyncProducer(ProducerCache.java:341)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-60235-1477315906055-0-27 on ExchangeId: ID-Venus-60235-1477315906055-0-28). Exhausted after delivery attempt: 1 caught: org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-28][Message: MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3EVN|A01|20050110045502PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NONK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||YPV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PTDG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||AIN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||... [Body clipped after 1000 chars, total length is 1421]]
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamples.txt                                    ] [       161]
+[route1            ] [choice2           ] [when[{(header{header(CamelHL7MessageType)} == ORU) and (header{CamelHL7Trigger] [        38]
+[route1            ] [marshal2          ] [marshal[org.apache.camel.model.DataFormatDefinition@12a61cab]                 ] [         3]
+[route1            ] [to2               ] [mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec                       ] [        35]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-60235-1477315906055-0-28
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-60235-1477315906055-0-21, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamples.txt, CamelFileContentType=text/plain, CamelFileLastModified=1477315551105, CamelFileLength=3745, CamelFileName=alarmexamples.txt, CamelFileNameConsumed=alarmexamples.txt, CamelFileNameOnly=alarmexamples.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamples.txt, CamelFileRelativePath=alarmexamples.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            byte[]
+	Body                MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3EVN|A01|20050110045502PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NONK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||YPV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PTDG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||AIN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212IN1|2|NON-PRIMARY|9|MEDICAL MUTUAL CALIF.|PO BOX 94776^^HOLLYWOOD^CA^441414776||8003621279|PUBSUMB|||Cartoon Ducks Inc||||7|DUCK^DONALD^D|1|19241010|111 DUCK ST^^FOWL^CA^999990000|||||||||||||||||056269770||||||PT|M|111^DUCK ST^^FOWL^CA^999990000|||||8291IN2|2||123121234|Cartoon Ducks Inc||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212IN1|3|SELFPAY|1|SELFPAY|||||||||||5||1
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-28][Message: MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3
+EVN|A01|20050110045502
+PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO
+NK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||Y
+PV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253
+GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PT
+DG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||A
+IN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291
+IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||... [Body clipped after 1000 chars, total length is 1421]]
+	at org.apache.camel.component.mina2.Mina2Producer.doProcess(Mina2Producer.java:179)
+	at org.apache.camel.component.mina2.Mina2Producer.process(Mina2Producer.java:112)
+	at org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)
+	at org.apache.camel.processor.SendProcessor$2.doInAsyncProducer(SendProcessor.java:173)
+	at org.apache.camel.impl.ProducerCache.doInAsyncProducer(ProducerCache.java:341)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-60235-1477315906055-0-29 on ExchangeId: ID-Venus-60235-1477315906055-0-30). Exhausted after delivery attempt: 1 caught: org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-30][Message: MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3EVN|A03|20050112154642PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NOPV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P]
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamples.txt                                    ] [       189]
+[route1            ] [choice2           ] [when[{(header{header(CamelHL7MessageType)} == ORU) and (header{CamelHL7Trigger] [        27]
+[route1            ] [marshal2          ] [marshal[org.apache.camel.model.DataFormatDefinition@12a61cab]                 ] [         1]
+[route1            ] [to2               ] [mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec                       ] [        26]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-60235-1477315906055-0-30
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-60235-1477315906055-0-21, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamples.txt, CamelFileContentType=text/plain, CamelFileLastModified=1477315551105, CamelFileLength=3745, CamelFileName=alarmexamples.txt, CamelFileNameConsumed=alarmexamples.txt, CamelFileNameOnly=alarmexamples.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamples.txt, CamelFileRelativePath=alarmexamples.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            byte[]
+	Body                MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3EVN|A03|20050112154642PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NOPV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-30][Message: MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3
+EVN|A03|20050112154642
+PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO
+PV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P
+]
+	at org.apache.camel.component.mina2.Mina2Producer.doProcess(Mina2Producer.java:179)
+	at org.apache.camel.component.mina2.Mina2Producer.process(Mina2Producer.java:112)
+	at org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)
+	at org.apache.camel.processor.SendProcessor$2.doInAsyncProducer(SendProcessor.java:173)
+	at org.apache.camel.impl.ProducerCache.doInAsyncProducer(ProducerCache.java:341)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+[1) thread #0 - file://src/data] GenericFileOnCompletion        WARN  Rollback file strategy: org.apache.camel.component.file.strategy.GenericFileRenameProcessStrategy@6e546518 for file: GenericFile[alarmexamples.txt]
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-60235-1477315906055-0-33 on ExchangeId: ID-Venus-60235-1477315906055-0-34). Exhausted after delivery attempt: 1 caught: org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-34][Message: MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3EVN|A01|20050110045502PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NONK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||YPV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PTDG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||AIN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||... [Body clipped after 1000 chars, total length is 1421]]
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamples.txt                                    ] [        67]
+[route1            ] [choice2           ] [when[{(header{header(CamelHL7MessageType)} == ORU) and (header{CamelHL7Trigger] [        65]
+[route1            ] [marshal2          ] [marshal[org.apache.camel.model.DataFormatDefinition@12a61cab]                 ] [         8]
+[route1            ] [to2               ] [mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec                       ] [        56]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-60235-1477315906055-0-34
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-60235-1477315906055-0-31, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamples.txt, CamelFileContentType=text/plain, CamelFileLastModified=1477315551105, CamelFileLength=3745, CamelFileName=alarmexamples.txt, CamelFileNameConsumed=alarmexamples.txt, CamelFileNameOnly=alarmexamples.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamples.txt, CamelFileRelativePath=alarmexamples.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            byte[]
+	Body                MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3EVN|A01|20050110045502PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NONK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||YPV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PTDG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||AIN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212IN1|2|NON-PRIMARY|9|MEDICAL MUTUAL CALIF.|PO BOX 94776^^HOLLYWOOD^CA^441414776||8003621279|PUBSUMB|||Cartoon Ducks Inc||||7|DUCK^DONALD^D|1|19241010|111 DUCK ST^^FOWL^CA^999990000|||||||||||||||||056269770||||||PT|M|111^DUCK ST^^FOWL^CA^999990000|||||8291IN2|2||123121234|Cartoon Ducks Inc||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212IN1|3|SELFPAY|1|SELFPAY|||||||||||5||1
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-34][Message: MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3
+EVN|A01|20050110045502
+PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO
+NK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||Y
+PV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253
+GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PT
+DG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||A
+IN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291
+IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||... [Body clipped after 1000 chars, total length is 1421]]
+	at org.apache.camel.component.mina2.Mina2Producer.doProcess(Mina2Producer.java:179)
+	at org.apache.camel.component.mina2.Mina2Producer.process(Mina2Producer.java:112)
+	at org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)
+	at org.apache.camel.processor.SendProcessor$2.doInAsyncProducer(SendProcessor.java:173)
+	at org.apache.camel.impl.ProducerCache.doInAsyncProducer(ProducerCache.java:341)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-60235-1477315906055-0-35 on ExchangeId: ID-Venus-60235-1477315906055-0-36). Exhausted after delivery attempt: 1 caught: org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-36][Message: MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3EVN|A03|20050112154642PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NOPV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P]
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamples.txt                                    ] [       116]
+[route1            ] [choice2           ] [when[{(header{header(CamelHL7MessageType)} == ORU) and (header{CamelHL7Trigger] [        47]
+[route1            ] [marshal2          ] [marshal[org.apache.camel.model.DataFormatDefinition@12a61cab]                 ] [         5]
+[route1            ] [to2               ] [mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec                       ] [        37]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-60235-1477315906055-0-36
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-60235-1477315906055-0-31, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamples.txt, CamelFileContentType=text/plain, CamelFileLastModified=1477315551105, CamelFileLength=3745, CamelFileName=alarmexamples.txt, CamelFileNameConsumed=alarmexamples.txt, CamelFileNameOnly=alarmexamples.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamples.txt, CamelFileRelativePath=alarmexamples.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            byte[]
+	Body                MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3EVN|A03|20050112154642PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NOPV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-36][Message: MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3
+EVN|A03|20050112154642
+PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO
+PV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P
+]
+	at org.apache.camel.component.mina2.Mina2Producer.doProcess(Mina2Producer.java:179)
+	at org.apache.camel.component.mina2.Mina2Producer.process(Mina2Producer.java:112)
+	at org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)
+	at org.apache.camel.processor.SendProcessor$2.doInAsyncProducer(SendProcessor.java:173)
+	at org.apache.camel.impl.ProducerCache.doInAsyncProducer(ProducerCache.java:341)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-60235-1477315906055-0-37 on ExchangeId: ID-Venus-60235-1477315906055-0-38). Exhausted after delivery attempt: 1 caught: org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-38][Message: MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3EVN|A01|20050110045502PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NONK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||YPV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PTDG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||AIN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||... [Body clipped after 1000 chars, total length is 1421]]
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamples.txt                                    ] [       150]
+[route1            ] [choice2           ] [when[{(header{header(CamelHL7MessageType)} == ORU) and (header{CamelHL7Trigger] [        33]
+[route1            ] [marshal2          ] [marshal[org.apache.camel.model.DataFormatDefinition@12a61cab]                 ] [         3]
+[route1            ] [to2               ] [mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec                       ] [        30]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-60235-1477315906055-0-38
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-60235-1477315906055-0-31, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamples.txt, CamelFileContentType=text/plain, CamelFileLastModified=1477315551105, CamelFileLength=3745, CamelFileName=alarmexamples.txt, CamelFileNameConsumed=alarmexamples.txt, CamelFileNameOnly=alarmexamples.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamples.txt, CamelFileRelativePath=alarmexamples.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            byte[]
+	Body                MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3EVN|A01|20050110045502PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NONK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||YPV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PTDG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||AIN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212IN1|2|NON-PRIMARY|9|MEDICAL MUTUAL CALIF.|PO BOX 94776^^HOLLYWOOD^CA^441414776||8003621279|PUBSUMB|||Cartoon Ducks Inc||||7|DUCK^DONALD^D|1|19241010|111 DUCK ST^^FOWL^CA^999990000|||||||||||||||||056269770||||||PT|M|111^DUCK ST^^FOWL^CA^999990000|||||8291IN2|2||123121234|Cartoon Ducks Inc||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||8885551212IN1|3|SELFPAY|1|SELFPAY|||||||||||5||1
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-38][Message: MSH|^~\&|AccMgr|1|||20050110045504||ADT^A01|599102|P|2.3
+EVN|A01|20050110045502
+PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111 DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO
+NK1|1|DUCK^HUEY|SO|3583 DUCK RD^^FOWL^CA^999990000|8885552222||Y
+PV1|1|I|PREOP^101^1^1^^^S|3|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4|||||||||||||||||||1||G|||20050110045253
+GT1|1|8291|DUCK^DONALD^D||111^DUCK ST^^FOWL^CA^999990000|8885551212||19241010|M||1|123121234||||#Cartoon Ducks Inc|111^DUCK ST^^FOWL^CA^999990000|8885551212||PT
+DG1|1|I9|71596^OSTEOARTHROS NOS-L/LEG^I9|OSTEOARTHROS NOS-L/LEG||A
+IN1|1|MEDICARE|3|MEDICARE|||||||Cartoon Ducks Inc|19891001|||4|DUCK^DONALD^D|1|19241010|111^DUCK ST^^FOWL^CA^999990000|||||||||||||||||123121234A||||||PT|M|111 DUCKST^^FOWL^CA^999990000|||||8291
+IN2|1||123121234|Cartoon Ducks Inc|||123121234A|||||||||||||||||||||||||||||||||||||||||||||||... [Body clipped after 1000 chars, total length is 1421]]
+	at org.apache.camel.component.mina2.Mina2Producer.doProcess(Mina2Producer.java:179)
+	at org.apache.camel.component.mina2.Mina2Producer.process(Mina2Producer.java:112)
+	at org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)
+	at org.apache.camel.processor.SendProcessor$2.doInAsyncProducer(SendProcessor.java:173)
+	at org.apache.camel.impl.ProducerCache.doInAsyncProducer(ProducerCache.java:341)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
 [                      Thread-0] MainSupport$HangupInterceptor  INFO  Received hang up - stopping the main instance.
 [                      Thread-0] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) is shutting down
 [                      Thread-0] DefaultShutdownStrategy        INFO  Starting to graceful shutdown 1 routes (timeout 300 seconds)
-[el-1) thread #1 - ShutdownTask] DefaultShutdownStrategy        INFO  Route: route1 shutdown complete, was consuming from: Endpoint[file://src/data?fileName=alarmexamplesv2.txt]
-[                      Thread-0] DefaultShutdownStrategy        INFO  Graceful shutdown of 1 routes completed in 0 seconds
+[el-1) thread #1 - ShutdownTask] DefaultShutdownStrategy        INFO  Waiting as there are still 2 inflight and pending exchanges to complete, timeout in 300 seconds. Inflights per route: [route1 = 2]
+[1) thread #0 - file://src/data] DefaultErrorHandler            ERROR Failed delivery for (MessageId: ID-Venus-60235-1477315906055-0-39 on ExchangeId: ID-Venus-60235-1477315906055-0-40). Exhausted after delivery attempt: 1 caught: org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-40][Message: MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3EVN|A03|20050112154642PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NOPV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P]
+
+Message History
+---------------------------------------------------------------------------------------------------------------------------------------
+RouteId              ProcessorId          Processor                                                                        Elapsed (ms)
+[route1            ] [route1            ] [file://src/data?fileName=alarmexamples.txt                                    ] [       195]
+[route1            ] [choice2           ] [when[{(header{header(CamelHL7MessageType)} == ORU) and (header{CamelHL7Trigger] [        44]
+[route1            ] [marshal2          ] [marshal[org.apache.camel.model.DataFormatDefinition@12a61cab]                 ] [         1]
+[route1            ] [to2               ] [mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec                       ] [        43]
+
+Exchange
+---------------------------------------------------------------------------------------------------------------------------------------
+Exchange[
+	Id                  ID-Venus-60235-1477315906055-0-40
+	ExchangePattern     InOnly
+	Headers             {breadcrumbId=ID-Venus-60235-1477315906055-0-31, CamelFileAbsolute=false, CamelFileAbsolutePath=C:\Users\Wolfgang\workspace\alarmSender\src\data\alarmexamples.txt, CamelFileContentType=text/plain, CamelFileLastModified=1477315551105, CamelFileLength=3745, CamelFileName=alarmexamples.txt, CamelFileNameConsumed=alarmexamples.txt, CamelFileNameOnly=alarmexamples.txt, CamelFileParent=src\data, CamelFilePath=src\data\alarmexamples.txt, CamelFileRelativePath=alarmexamples.txt, CamelRedelivered=false, CamelRedeliveryCounter=0}
+	BodyType            byte[]
+	Body                MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3EVN|A03|20050112154642PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NOPV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P
+]
+
+Stacktrace
+---------------------------------------------------------------------------------------------------------------------------------------
+org.apache.camel.ExchangeTimedOutException: The OUT message was not received within: 30000 millis. Exchange[ID-Venus-60235-1477315906055-0-40][Message: MSH|^~\&|AccMgr|1|||20050112154645||ADT^A03|59912415|P|2.3
+EVN|A03|20050112154642
+PID|1||10006579^^^1^MRN^1||DUCK^DONALD^D||19241010|M||1|111^DUCK ST^^FOWL^CA^999990000^^M|1|8885551212|8885551212|1|2||40007716^^^AccMgr^VN^1|123121234|||||||||||NO
+PV1|1|I|IN1^214^1^1^^^S|3||IN1^214^1|37^DISNEY^WALT^^^^^^AccMgr^^^^CI|||01||||1|||37^DISNEY^WALT^^^^^^AccMgr^^^^CI|2|40007716^^^AccMgr^VN|4||||||||||||||||1|||1||P
+]
+	at org.apache.camel.component.mina2.Mina2Producer.doProcess(Mina2Producer.java:179)
+	at org.apache.camel.component.mina2.Mina2Producer.process(Mina2Producer.java:112)
+	at org.apache.camel.util.AsyncProcessorConverterHelper$ProcessorToAsyncProcessorBridge.process(AsyncProcessorConverterHelper.java:61)
+	at org.apache.camel.processor.SendProcessor$2.doInAsyncProducer(SendProcessor.java:173)
+	at org.apache.camel.impl.ProducerCache.doInAsyncProducer(ProducerCache.java:341)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:168)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:677)
+	at org.apache.camel.processor.MulticastProcessor.doProcessSequential(MulticastProcessor.java:605)
+	at org.apache.camel.processor.MulticastProcessor.process(MulticastProcessor.java:237)
+	at org.apache.camel.processor.Splitter.process(Splitter.java:104)
+	at org.apache.camel.management.InstrumentationProcessor.process(InstrumentationProcessor.java:77)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:460)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:121)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:190)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:442)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:214)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:178)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+[1) thread #0 - file://src/data] GenericFileOnCompletion        WARN  Rollback file strategy: org.apache.camel.component.file.strategy.GenericFileRenameProcessStrategy@6e546518 for file: GenericFile[alarmexamples.txt]
+[el-1) thread #1 - ShutdownTask] DefaultShutdownStrategy        INFO  Route: route1 shutdown complete, was consuming from: Endpoint[file://src/data?fileName=alarmexamples.txt]
+[                      Thread-0] DefaultShutdownStrategy        INFO  Graceful shutdown of 1 routes completed in 1 seconds
 [                      Thread-0] MainLifecycleStrategy          INFO  CamelContext: camel-1 has been shutdown, triggering shutdown of the JVM.
-[                      Thread-0] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) uptime 15.059 seconds
-[                      Thread-0] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) is shutdown in 0.026 seconds
+[                      Thread-0] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) uptime 4.956 seconds
+[                      Thread-0] DefaultCamelContext            INFO  Apache Camel 2.16.3 (CamelContext: camel-1) is shutdown in 1.008 seconds

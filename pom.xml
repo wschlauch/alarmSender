@@ -64,7 +64,11 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             <artifactId>hapi-structures-v25</artifactId>
             <version>${hapi.version.stable}</version>
         </dependency>
-
+		<dependency>
+            <groupId>ca.uhn.hapi</groupId>
+            <artifactId>hapi-structures-v23</artifactId>
+            <version>${hapi.version.stable}</version>
+        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
