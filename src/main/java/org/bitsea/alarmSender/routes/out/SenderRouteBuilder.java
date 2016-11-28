@@ -9,6 +9,8 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.hl7.HL7DataFormat;
 import org.apache.camel.spi.DataFormat;
 
+import ca.uhn.hl7v2.HL7Exception;
+
 
 public class SenderRouteBuilder extends RouteBuilder {
 	@Override
@@ -21,43 +23,33 @@ public class SenderRouteBuilder extends RouteBuilder {
 		
 		Predicate isACK = header("CamelHL7MessageType").isEqualTo("ACK");
 		
-		
 		from("file:src/data?fileName=alarmexamples.txt")
 		.setExchangePattern(ExchangePattern.InOnly)
 		.split().tokenize("\r\n").streaming()//.delay(5000)//.unmarshal(hl7)
-		.choice()
-			.when(isORU).marshal().hl7(false)
-				.to("mina2://udp://127.0.0.1:" + System.getProperty("port")	+ "?sync=false&codec=#hl7codec")
+		.doTry()
+			.choice()
+				.when(isORU).marshal().hl7(false)
+					.to("mina2://udp://127.0.0.1:" + System.getProperty("port")	+ "?sync=false&codec=#hl7codec")
+					.endChoice()
+				.otherwise().marshal().hl7(false)
+					.to("mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec")
+			.end()
+			.unmarshal().hl7(false)
+			.choice()
+				.when(isACK)
 				.endChoice()
-			.otherwise().marshal().hl7(false)
-				.to("mina2://tcp://127.0.0.1:22400?sync=true&codec=#hl7codec")
-				.unmarshal().hl7(false)
-				.choice()
-					.when(isACK)
-					// here comes the handling of different errors that could come - or
-					// a just accept, i.e., delete all asking and just set the body to null
-						.process(new Processor() {
-							public void process(Exchange exchange) throws Exception {
-//									ACK msg = exchange.getIn().getBody(ACK.class);
-//									MSA acknoweldgement = msg.getMSA();
-//									String mtype = acknoweldgement.getAcknowledgmentCode().encode();
-//									if (mtype.equalsIgnoreCase("ae")) {
-//										System.out.println("Application Error for message with ID " + acknoweldgement.getMsa2_MessageControlID().getValue());
-//									} else if (mtype.equalsIgnoreCase("ar")) {
-//										System.out.println("Message " + acknoweldgement.getMsa2_MessageControlID().getValue()  + " was rejected");
-//									} else if (mtype.equalsIgnoreCase("aa")) {
-//										System.out.println("Everything okay");
-//									}
-//									exchange.getIn().setBody(null);
-							}
-						}).endChoice()
-				.otherwise()
-					.process(new Processor() {
-						public void process(Exchange exchange) throws Exception {
-							System.out.println("This was a failed message delivery:\n" + exchange.getIn().getBody(String.class));
-						}
-					}).endChoice()
-			.end();
+			.otherwise()
+				.process(new Processor() {
+					public void process(Exchange exchange) throws Exception {
+						System.out.println("This was a failed message delivery:\n" + exchange.getIn().getBody(String.class));
+					}
+				})
+			.end()
+			.endDoTry()
+		.doCatch(HL7Exception.class)
+			.to("mina2://udp://127.0.0.1:" + System.getProperty("port")	+ "?sync=false&codec=#hl7codec")
+		.endDoTry()
+		.end();
 	}
 	
 	
